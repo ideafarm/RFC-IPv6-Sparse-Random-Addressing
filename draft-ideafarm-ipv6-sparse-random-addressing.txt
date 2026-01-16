@@ -26,7 +26,8 @@ Abstract
    creates accountability.  To protect routers from flood attacks, the
    globally routable /48 prefix is also randomized, in a way that
    exploits BGP route propagation delay to partially or completely quash
-   the flooding at the source, thereby protecting all upstream routers.
+   the flooding at the source, thereby protecting all downstream
+   routers.
 
    This early draft only contains a conceptual overview.
 
