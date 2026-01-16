@@ -183,3 +183,6 @@ specified in this document.
 
 The author thanks the ARIN Regional Internet Registry for temporarily providing an IPv6 /36 block
 to accommodate his study of, and experimentation with, sparse random addressing.
+
+This document was formatted and uploaded to the IETF Datatracker database using the wonderful automation
+tool created by Martin Thomson, available at https://github.com/martinthomson/internet-draft-template .
