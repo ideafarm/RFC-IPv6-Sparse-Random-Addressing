@@ -47,7 +47,7 @@ subscriber has a unique secret so, at any point in time, uses a unique IPv6 addr
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  To protect routers from flood attacks, the globally routable /48 prefix is also
 randomized, in a way that exploits BGP route propagation delay to partially or completely quash
-the flooding at the source, thereby protecting all upstream routers.
+the flooding at the source, thereby protecting all downstream routers.
 
 This early draft only contains a conceptual overview.
 
