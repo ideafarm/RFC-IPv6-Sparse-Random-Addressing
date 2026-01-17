@@ -80,7 +80,7 @@ user also enter a time-based password that is calculated using the current time 
 only he and the web server knows.  Current practice allocates 64 bits for the host ID portion of
 an IPv6 address, which is huge relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
-password, attack packets can be prevented, by sparseness, from reaching that server.
+password, attack packets can be prevented, by sparseness, from reaching those servers.
 
 For such a scheme to work, a would-be attacker must not be able to discover the secret.  A simple
 way to prevent this is to give a unique secret to each paid subscriber, which requires that the
@@ -111,10 +111,11 @@ address exhaustion concern.
 Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
 use of the huge IPv6 address space.  Even if prefixes longer than 48 bits are dropped, that leaves up
 to 281 trillion prefixes requiring global routability.  Sparse random addressing "theoretically" does
-not increase the number of routes advertised, but in practice it will, because multiple routes must
-be advertised at the same time. As discussed below, the objective in randomizing the prefix is to
+not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
+be advertised at the same time, which will increase the number of prefixes (but not routes) in the
+global routing table. As discussed below, the objective in randomizing the prefix is to
 exploit asymmetries that put a DDOS attacker and his botnet at a disadvantage.  In the experimental
-implementation, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
+implementation described below, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
 once each minute, with each prefix being advertised for about 15 minutes.  Deploying sparse random
 addressing in this way, with each server cluster emitting a BGP UPDATE (add+withdraw) message once
 each minute, would place a new processing burden on the global BGP system.
