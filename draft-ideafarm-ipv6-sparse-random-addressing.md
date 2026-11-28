@@ -45,7 +45,8 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
+accountability.  To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
 the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
