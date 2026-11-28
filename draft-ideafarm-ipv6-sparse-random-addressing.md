@@ -38,9 +38,6 @@ informative:
 
 --- abstract
 
-Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
-subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
-website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
 the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
@@ -50,12 +47,10 @@ of an Internet that routes much of its traffic through a few massive third party
 
 This document discusses how "sparse random addressing" can use the huge IPv6 address space
 to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
-IID portion of an IPv6 address as a time-based password that only paid subscribers know.  (They
-know it by running a program on the device that they use to access the website.  That program uses
-the current time and a secret shared with the web server to calculate the current IID.)  Each
+Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
 the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
 way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
