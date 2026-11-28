@@ -38,8 +38,6 @@ informative:
 
 --- abstract
 
-This document discusses how "sparse random addressing" can use the huge IPv6 address space
-to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
@@ -49,6 +47,33 @@ the system includes a "nuclear option" to switch to a fallback system hardened i
 way.  The intended result for would-be attackers: High expense and no significant damage, accomplished with
 inexpensive Virtual Private Servers (VPS) without the cost, latency, or Single Point of Failure (SPF) brittleness
 of an Internet that routes much of its traffic through a few massive third party scrubbing systems.
+
+This document discusses how "sparse random addressing" can use the huge IPv6 address space
+to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
+IID portion of an IPv6 address as a time-based password that only paid subscribers know.  (They
+know it by running a program on the device that they use to access the website.  That program uses
+the current time and a secret shared with the web server to calculate the current IID.)  Each
+subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
+website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
+accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
+the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
+way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
+(VPS) without scrubbing or other third party mitigation.
+
+# Introduction
+
+This document is written primarily for network architects deploying the Border Gateway Protocol (BGP) who
+see the need to harden the global Internet against Artificial Intelligence (AI)-assisted attacks on servers, but who must ensure
+that such hardening is done at reasonable operational and capital costs and in a way that does not degrade routing stability if deployed
+at scale.  BGP convergence must not be destabilized, and the size of the global routing table and the cost of
+carrier-grade forwarding hardware and energy must not rise unreasonably relative to the benefits gained.
+
+The proposed solution is intended to deprive would-be attackers of both ability and incentive, or even to invert the
+attacker's payoff matrix, while adding only trivial computational and bandwidth burden to the global BGP control plane.
+Deterrence is achieved by combining (1) a hardened primary system, (2) a fallback system of orthogonal mechanisms
+that use need-to-know secrecy and vetting by small trust circles of subscribers to limit the blast radius, and (3) operational and
+user norms in which occasional outages reinforce collective threat awareness and galvanize defensive vigilance.
 
 --- middle
 
