@@ -74,7 +74,7 @@ user norms in which occasional outages reinforce collective threat awareness and
 Implementations of the proposed solution must offer compelling content to overcome significant friction to attract
 paying subscribers.  Consumers of the conventional World Wide Web (WWW) expect to access content anonymously, without
 paying any money and without installing or using any software other than a browser.  The proposed solution presents
-and entirely different user experience characterized by accountability and trust.  For access, each user must
+an entirely different user experience characterized by accountability and trust.  For access, each user must
 purchase a subscription and must use a "key program" that is customized with baked in credentials.  Before being allowed
 to purchase a subscription, each person must present an identification document to, and be video recorded by, a payment
 processor's automated identity and liveness verification system.  Each accepted subscriber is subject to vigorous enforcement of
