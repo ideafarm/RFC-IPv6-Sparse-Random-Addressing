@@ -38,11 +38,11 @@ informative:
 
 --- abstract
 
-The IPv6 address space is huge.  This document discusses how "sparse random addressing" can be used
+This document discusses how "sparse random addressing" can use the huge IPv6 address space
 to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
-host ID portion of an IPv6 address as a time-based password that only paid subscribers know.  (They
+Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  (They
 know it by running a program on the device that they use to access the website.  That program uses
-the current time and a secret shared with the web server to calculate the current host ID.)  Each
+the current time and a secret shared with the web server to calculate the current IID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
@@ -87,7 +87,7 @@ the huge IPv6 address space in this new way.
 Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
 user also enter a time-based password that is calculated using the current time and a secret that
-only he and the web server knows.  Current practice allocates 64 bits for the host ID portion of
+only he and the web server knows.  Current practice allocates 64 bits for the IID portion of
 an IPv6 address, which is huge relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
 password, attack packets can be prevented, by sparseness, from reaching those servers.
