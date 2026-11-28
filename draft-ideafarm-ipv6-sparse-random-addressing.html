@@ -1211,7 +1211,19 @@ Deterrence is achieved by combining (1) a hardened primary system, (2) a fallbac
 that use need-to-know secrecy and vetting by small trust circles of subscribers to limit attack surface and blast radius,
 and (3) operational and user norms in which occasional outages reinforce collective threat awareness and galvanize defensive
 vigilance.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Implementations of the proposed solution must offer compelling content to overcome significant friction to attract
+<p id="section-1-3">Secured connections are supported by using a specially designed Domain Name System (DNS) zone server that authenticates the
+server's domain without allowing peers to query it to discover the secret IPv6 addresses being used.  Would-be attackers
+can discover full addresses by sniffing a subscriber's wire, and can discover prefixes by monitoring the BGP routing table.
+During a significant attack on the primary system, all BGP routes are withdrawn, and the client programs switch to using
+secret prefixes that an attacker can discover only by sniffing a subscriber's wire.  This level of address secrecy is made
+possible for both the primary and the fallback systems by the use of time-based shared secrets to calculate prefixes and IID's.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The combination of the two orthogonal systems is largely redundant, with each system, by standing ready to step in, serving
+to discourage the attack of the other system.  An attacker who is able to monitor BGP knows that an expensive, vigorous attack
+on advertised prefixes will merely result in clients switching to the fallback system, which can only be attacked by infiltrating
+a subscriber trust-circle.  An attack on a subscriber trust circle only affects a few subscribers, and has no effect at all
+when the fallback system isn't being used because the primary system is not being attacked.  The primary (BGP) system operates at
+lower cost, but the two systems deliver largely indistinguishable user experiences.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Implementations of the proposed solution must offer compelling content to overcome significant friction to attract
 paying subscribers.  Consumers of the conventional World Wide Web (WWW) expect to access content anonymously, without
 paying any money and without installing or using any software other than a browser.  The proposed solution presents
 an entirely different user experience characterized by accountability and trust.  For access, each user must
@@ -1220,8 +1232,8 @@ to purchase a subscription, each person must present an identification document 
 processor's automated identity and liveness verification system.  Each accepted subscriber has a verified legal identity and
 is subject to civil and criminal jurisdiction, and must also establish trustworthiness by participating in a small trust-circle group of
 subscribers.  But once granted access and accepted as trustworthy, subscribers enjoy a social experience that is quite
-unlike anything possible on the conventional, unauthenticated, open-access WWW.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The IPv6 address space is vast.  For example, it contains 68 billion prefixes that are 36 bits long,
+unlike anything possible on the conventional, unauthenticated, open-access WWW.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The IPv6 address space is vast.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
 and this policy could continue indefinitely without ever consuming more than a small fraction of
 the available address space.  Yet all of the Tier-1 networking providers and all of the Regional Internet
@@ -1232,37 +1244,37 @@ applicant must have multiple physical locations to obtain a prefix shorter than 
 number of physical locations such that each location is only given a single routable prefix.  The
 policy neither contemplates nor provides for using the vast IPv6 address space in any manner other
 than the way that IPv4 addresses have been used for a half century, one unchanging public address
-per device.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">This document proposes that portions of an IPv6 address be used as time-based passwords, describes
+per device.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">This document proposes that portions of an IPv6 address be used as time-based passwords, describes
 a particular experimental implementation and preliminary findings from studying it, and discusses
 the costs and benefits, both to individual organizations and to the Internet community, of using
-the vast IPv6 address space in this new way.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
+the vast IPv6 address space in this new way.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
 user also enter a time-based password that is calculated using the current time and a secret that
 only he and the web server knows.  Current practice allocates 64 bits for the Interface Identifier (IID) portion of
 an IPv6 address, which is vast relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
-password, attack packets can be prevented, by sparseness, from reaching those servers.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">For such a scheme to work, a would-be attacker must not be able to discover the secret.  A simple
+password, attack packets can be prevented, by sparseness, from reaching those servers.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">For such a scheme to work, a would-be attacker must not be able to discover the secret.  A simple
 way to prevent this is to give a unique secret to each paid subscriber, which requires that the
 server accepts packets from many IPv6 addresses, one for each subscriber.  An attacker can purchase
 a subscription and use a tool like Wireshark to see the current IPv6 address that gives him access
 to the server, but if he uses that information to attack the server, the IPv6 addresses that the
-attack uses will reveal his identity.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">A similar approach can be used to secure upstream routers from a flooding attack.  A well funded and
+attack uses will reveal his identity.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">A similar approach can be used to secure upstream routers from a flooding attack.  A well funded and
 motivated attacker might use a botnet to flood the /48 prefix with randomly addressed packets, not
 to reach the web server, but to get the upstream ISP to nullroute the entire prefix.  Randomizing a
-portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">To protect web servers from neighbor discovery floods, routers drop all packets not addressed
 to secret allowlisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
 the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
 incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
 to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
-provides reduced but adequate functionality.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">Using the vast IPv6 address space in this way consumes orders of magnitude more addresses, so such
+provides reduced but adequate functionality.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">Using the vast IPv6 address space in this way consumes orders of magnitude more addresses, so such
 applications revive address exhaustion concerns.  Fortunately, these concerns are mitigated by two
 facts.  First, the space is so vast that, even with current routing practice, every person on the
 planet can be given a /36 prefix for his exclusive use, and each such block contains 4096 routable
@@ -1274,8 +1286,8 @@ space.  (In that space, the number of routes in the global routing table would b
 enforced sparseness rather than prefix length.)  It might take several years for such prefixes
 to become reliably routable, but after that transition, sparse random addressing would no longer
 require prefixes shorter than /48.  So sparse random addressing would not, long term, create an
-address exhaustion concern.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11">Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
+address exhaustion concern.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13">Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
 use of the vast IPv6 address space.  Even if prefixes longer than 48 bits are dropped, that leaves up
 to 281 trillion prefixes requiring global routability.  Sparse random addressing "theoretically" does
 not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
@@ -1285,23 +1297,23 @@ exploit asymmetries that put a Distributed Denial of Service (DDoS) attacker and
 implementation described below, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
 once each minute, with each prefix being advertised for about 15 minutes.  Deploying sparse random
 addressing in this way, with each server cluster emitting a BGP UPDATE (add+withdraw) message once
-each minute, would place a new processing burden on the global BGP system.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">This document is a working draft that presents the current status of an experimental implementation
+each minute, would place a new processing burden on the global BGP system.<a href="#section-1-13" class="pilcrow">¶</a></p>
+<p id="section-1-14">This document is a working draft that presents the current status of an experimental implementation
 of sparse random addressing using a single router and a single web server at a single datacenter
 to serve a simple paid-access website.  The initial objective is to get it all to work, and then to
 assess robustness.  (Can it effectively withstand a DDoS attack?)  This document will specify the
 experimental system in enough detail to enable others to replicate the experiment, using the same
 proprietary open source software.  In this initial phase, the focus will be to find out whether
-it is possible for a well funded and motivated DDoS attacker to bring down the experimental website.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">The next research objective will be to quantify the resource impact that the deployment of such
+it is possible for a well funded and motivated DDoS attacker to bring down the experimental website.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-15">The next research objective will be to quantify the resource impact that the deployment of such
 systems will have on the global BGP and routing system.  If the benefits of defeating DDoS attacks
 and of facilitating paid-access websites are significant, the Internet community can then discuss
 what level of incremental processing cost it is willing to bear, in the form of more expensive
-routers and higher energy consumption, to obtain those benefits.<a href="#section-1-13" class="pilcrow">¶</a></p>
-<p id="section-1-14">At this early stage, this approach appears to promise to give the Internet community the "upper hand"
+routers and higher energy consumption, to obtain those benefits.<a href="#section-1-15" class="pilcrow">¶</a></p>
+<p id="section-1-16">At this early stage, this approach appears to promise to give the Internet community the "upper hand"
 in its battle against bad actors who use botnets to attack servers, and sparse random addressing,
 which can only be done with IPv6, just might be the "killer app" that could finally drive universal
-migration to IPv6.<a href="#section-1-14" class="pilcrow">¶</a></p>
+migration to IPv6.<a href="#section-1-16" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">

@@ -117,6 +117,30 @@ Table of Contents
    (3) operational and user norms in which occasional outages reinforce
    collective threat awareness and galvanize defensive vigilance.
 
+   Secured connections are supported by using a specially designed
+   Domain Name System (DNS) zone server that authenticates the server's
+   domain without allowing peers to query it to discover the secret IPv6
+   addresses being used.  Would-be attackers can discover full addresses
+   by sniffing a subscriber's wire, and can discover prefixes by
+   monitoring the BGP routing table.  During a significant attack on the
+   primary system, all BGP routes are withdrawn, and the client programs
+   switch to using secret prefixes that an attacker can discover only by
+   sniffing a subscriber's wire.  This level of address secrecy is made
+   possible for both the primary and the fallback systems by the use of
+   time-based shared secrets to calculate prefixes and IID's.
+
+   The combination of the two orthogonal systems is largely redundant,
+   with each system, by standing ready to step in, serving to discourage
+   the attack of the other system.  An attacker who is able to monitor
+   BGP knows that an expensive, vigorous attack on advertised prefixes
+   will merely result in clients switching to the fallback system, which
+   can only be attacked by infiltrating a subscriber trust-circle.  An
+   attack on a subscriber trust circle only affects a few subscribers,
+   and has no effect at all when the fallback system isn't being used
+   because the primary system is not being attacked.  The primary (BGP)
+   system operates at lower cost, but the two systems deliver largely
+   indistinguishable user experiences.
+
    Implementations of the proposed solution must offer compelling
    content to overcome significant friction to attract paying
    subscribers.  Consumers of the conventional World Wide Web (WWW)
