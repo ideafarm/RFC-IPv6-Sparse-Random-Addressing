@@ -19,7 +19,7 @@ Abstract
    essential idea is to use the Interface Identifier (IID) portion of an
    IPv6 address as a time-based password that only paid subscribers
    know.  Each subscriber has a unique secret so, at any point in time,
-   a unique IPv6 address is used to access the website.  Sparseness
+   uses a unique IPv6 address to access the website.  Sparseness
    prevents attack packets from reaching the web server.  Uniqueness
    creates accountability.  Routers use secret allowlisted prefixes to
    prevent Neighbor Cache exhaustion and Host Solicitation storms.
