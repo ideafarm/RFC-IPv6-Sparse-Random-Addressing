@@ -57,7 +57,7 @@ way.  The intended result: High expense and no joy for attackers, done with inex
 
 This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
 like to see the global Internet hardened against attacks on servers, but who need to verify that such
-hardening is done without destabilize BGP convergence, exploding the size of the global routing table, or increasing
+hardening is done without destabilizing BGP convergence, exploding the size of the global routing table, or increasing
 global networking energy consumption or the cost of Tier-1 networking appliances. The proposed solution is
 intended to deprive would-be
 attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
