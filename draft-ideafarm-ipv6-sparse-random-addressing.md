@@ -38,10 +38,10 @@ informative:
 
 --- abstract
 
-This document discusses how "sparse random addressing" can use the huge IPv6 address space
+This document discusses how "sparse random addressing" can use the vast IPv6 address space
 to defeat Distributed Denial of Service (DDoS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
-subscriber has a unique secret so uses a unique IPv6 address at any point in time to access the
+subscriber has a unique secret and therefore uses a unique IPv6 address at any point in time to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and Internet Control Message Protocol
 version 6 (ICMPv6) Neighbor Solicitation storms.  Border
@@ -82,7 +82,7 @@ is subject to civil and criminal jurisdiction, and must also establish trustwort
 subscribers.  But once granted access and accepted as trustworthy, subscribers enjoy a social experience that is quite
 unlike anything possible on the conventional, unauthenticated, open-access WWW.
 
-The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
+The IPv6 address space is vast.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
 and this policy could continue indefinitely without ever consuming more than a small fraction of
 the available address space.  Yet all of the Tier-1 networking providers and all of the Regional Internet
@@ -91,20 +91,20 @@ published, address.  For example, ARIN's IPv6 block assignment policy requires t
 applicant must have multiple physical locations to obtain a prefix shorter than the minimum prefix length
 (48 bits) that is globally routable, and that the length of the prefix granted will depend upon the
 number of physical locations such that each location is only given a single routable prefix.  The
-policy neither contemplates nor provides for using the huge IPv6 address space in any manner other
+policy neither contemplates nor provides for using the vast IPv6 address space in any manner other
 than the way that IPv4 addresses have been used for a half century, one unchanging public address
 per device.
 
 This document proposes that portions of an IPv6 address be used as time-based passwords, describes
 a particular experimental implementation and preliminary findings from studying it, and discusses
 the costs and benefits, both to individual organizations and to the Internet community, of using
-the huge IPv6 address space in this new way.
+the vast IPv6 address space in this new way.
 
 Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
 user also enter a time-based password that is calculated using the current time and a secret that
 only he and the web server knows.  Current practice allocates 64 bits for the Interface Identifier (IID) portion of
-an IPv6 address, which is huge relative to the number of distinct values needed to identify each
+an IPv6 address, which is vast relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
 password, attack packets can be prevented, by sparseness, from reaching those servers.
 
@@ -129,9 +129,9 @@ incentive for bad actors to attack, the system is designed to detect any signifi
 to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
 provides reduced but adequate functionality.
 
-Using the huge IPv6 address space in this way consumes orders of magnitude more addresses, so such
+Using the vast IPv6 address space in this way consumes orders of magnitude more addresses, so such
 applications revive address exhaustion concerns.  Fortunately, these concerns are mitigated by two
-facts.  First, the space is so huge that, even with current routing practice, every person on the
+facts.  First, the space is so vast that, even with current routing practice, every person on the
 planet can be given a /36 prefix for his exclusive use, and each such block contains 4096 routable
 blocks (blocks that use a 48 bit prefix), since 12 bits are available for randomizing
 the prefix.  Second, the RIR's can reserve a portion of the address space for sparse random
@@ -144,7 +144,7 @@ require prefixes shorter than /48.  So sparse random addressing would not, long 
 address exhaustion concern.
 
 Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
-use of the huge IPv6 address space.  Even if prefixes longer than 48 bits are dropped, that leaves up
+use of the vast IPv6 address space.  Even if prefixes longer than 48 bits are dropped, that leaves up
 to 281 trillion prefixes requiring global routability.  Sparse random addressing "theoretically" does
 not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
 be advertised at the same time, which will increase the number of prefixes (but not routes) in the
