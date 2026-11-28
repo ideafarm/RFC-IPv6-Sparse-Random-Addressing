@@ -45,11 +45,21 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  To protect routers from flood attacks, the globally routable /48 prefix is also
-randomized, in a way that exploits BGP route propagation delay to partially or completely quash
-the flooding at the source, thereby protecting all downstream routers.
+accountability.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
+randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
+condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
+the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
+incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
+to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
+provides reduced but adequate functionality.
 
-This early draft only contains a conceptual overview.
+This draft is written primarily for networking specialists who want to eliminate attacks on servers while
+ensuring that the solution is not worse than the problem.  The proposed solution is intended to deprive would-be
+attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
+global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
+completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
+as defects.  (It's no fun for a bully to punch someone in the stomach when the response is, "That feels good.
+Punch me again.")
 
 
 --- middle
@@ -182,8 +192,8 @@ specified in this document.
 # Acknowledgments
 {:numbered="false"}
 
-The author thanks the ARIN Regional Internet Registry for temporarily providing an IPv6 /36 block
-to accommodate his study of, and experimentation with, sparse random addressing.
+The author thanks the ARIN Regional Internet Registry for providing the IPv6 /36 block
+used in the author's production implementation of IPv6 Sparse Random Addressing.
 
 This document was formatted and uploaded to the IETF Datatracker database using the wonderful automation
 tool created by Martin Thomson, available at https://github.com/martinthomson/internet-draft-template .
