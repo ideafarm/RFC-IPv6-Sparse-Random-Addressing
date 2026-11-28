@@ -45,16 +45,15 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.
+accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  BGP
+route propagation delay is exploited to mitigate volumetric carpet bombing, and the system includes
+a "nuclear option" to switch to a fallback system hardened in a completely different way.  The intended
+result: High expense and no joy for attackers, done with inexpensive VPS's without scrubbing or other third party
+mitigation.
 
-To protect web servers from neighbor discovery floods, routers drop all packets not addressed
-to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
-randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
-condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
-the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
-incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
-to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
-provides reduced but adequate functionality.
+--- middle
+
+# Introduction
 
 This draft is written primarily for networking specialists who want to eliminate attacks on servers while
 ensuring that the solution is not worse than the problem.  The proposed solution is intended to deprive would-be
@@ -63,11 +62,6 @@ global BGP system.  This is done by combining (1) a hardened primary system, (2)
 completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
 as defects.  (It's no fun for a bully to punch someone in the stomach when the response is, "That feels good.
 Punch me again.")
-
-
---- middle
-
-# Introduction
 
 The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
@@ -106,6 +100,15 @@ A similar approach can be used to secure upstream routers from a flooding attack
 motivated attacker might use a botnet to flood the /48 prefix with randomly addressed packets, not
 to reach the web server, but to get the upstream ISP to nullroute the entire prefix.  Randomizing a
 portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.
+
+To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
+randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
+condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
+the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
+incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
+to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
+provides reduced but adequate functionality.
 
 Using the huge IPv6 address space in this way consumes orders of magnitude more addresses, so such
 applications revive address exhaustion concerns.  Fortunately, these concerns are mitigated by two
@@ -151,7 +154,6 @@ At this early stage, this approach appears to promise to give the Internet commu
 in its battle against bad actors who use botnets to attack servers, and sparse random addressing,
 which can only be done with IPv6, just might be the "killer app" that could finally drive universal
 migration to IPv6.
-
 
 
 
