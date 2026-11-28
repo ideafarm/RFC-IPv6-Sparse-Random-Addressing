@@ -45,18 +45,21 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  BGP
-route propagation delay is exploited to mitigate volumetric carpet bombing, and the system includes
-a "nuclear option" to switch to a fallback system hardened in a completely different way.  The intended
-result: High expense and no joy for attackers, done with inexpensive VPS's without scrubbing or other third party
-mitigation.
+accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
+the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
+way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
+(VPS) without scrubbing or other third party mitigation.
 
 --- middle
 
 # Introduction
 
-This draft is written primarily for networking specialists who want to eliminate attacks on servers while
-ensuring that the solution is not worse than the problem.  The proposed solution is intended to deprive would-be
+This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
+like to see the global Internet hardened against attacks on servers, but who need to verify that such
+hardening is done without destabilize BGP convergence, exploding the size of the global routing table, or increasing
+global networking energy consumption or the cost of Tier-1 networking appliances. The proposed solution is
+intended to deprive would-be
 attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
 global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
 completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
