@@ -38,7 +38,7 @@ informative:
 
 --- abstract
 
-This document discusses how "sparse random addressing" can use the vast IPv6 address space
+This document discusses how "sparse random addressing" can use the vast 128-bit IPv6 address space
 to defeat Distributed Denial of Service (DDoS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret and therefore uses a unique IPv6 address at any point in time to access the
