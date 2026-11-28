@@ -45,7 +45,7 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
 the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
 way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
@@ -105,7 +105,7 @@ to reach the web server, but to get the upstream ISP to nullroute the entire pre
 portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.
 
 To protect web servers from neighbor discovery floods, routers drop all packets not addressed
-to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
+to secret allowlisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
 the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
