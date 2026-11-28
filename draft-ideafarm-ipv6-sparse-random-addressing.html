@@ -14,7 +14,8 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+accountability. 
+       To protect web servers from neighbor discovery floods, routers drop all packets not addressed
 to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
@@ -1107,21 +1108,22 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+accountability.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">To protect web servers from neighbor discovery floods, routers drop all packets not addressed
 to secret whitelisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
 the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
 incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
 to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
-provides reduced but adequate functionality.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This draft is written primarily for networking specialists who want to eliminate attacks on servers while
+provides reduced but adequate functionality.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-3">This draft is written primarily for networking specialists who want to eliminate attacks on servers while
 ensuring that the solution is not worse than the problem.  The proposed solution is intended to deprive would-be
 attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
 global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
 completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
 as defects.  (It's no fun for a bully to punch someone in the stomach when the response is, "That feels good.
-Punch me again.")<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+Punch me again.")<a href="#section-abstract-3" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
