@@ -87,7 +87,7 @@ the huge IPv6 address space in this new way.
 Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
 user also enter a time-based password that is calculated using the current time and a secret that
-only he and the web server knows.  Current practice allocates 64 bits for the IID portion of
+only he and the web server knows.  Current practice allocates 64 bits for the Interface Identifier (IID) portion of
 an IPv6 address, which is huge relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
 password, attack packets can be prevented, by sparseness, from reaching those servers.
