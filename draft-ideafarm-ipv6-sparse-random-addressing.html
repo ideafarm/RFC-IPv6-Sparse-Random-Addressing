@@ -6,20 +6,20 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>IPv6 Sparse Random Addressing</title>
 <meta content="Wo Of Ideafarm" name="author">
-<meta content="
-       The IPv6 address space is huge.  This document discusses how &quot;sparse random addressing&quot; can be used
+<meta content='
+       The IPv6 address space is huge.  This document discusses how "sparse random addressing" can be used
 to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
 host ID portion of an IPv6 address as a time-based password that only paid subscribers know.  (They
 know it by running a program on the device that they use to access the website.  That program uses
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  BGP
-route propagation delay is exploited to mitigate volumetric carpet bombing, and the system includes
-a &quot;nuclear option&quot; to switch to a fallback system hardened in a completely different way.  The intended
-result: High expense and no joy for attackers, done with inexpensive VPS's without scrubbing or other third party
-mitigation. 
-    " name="description">
+accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
+the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
+way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
+(VPS) without scrubbing or other third party mitigation. 
+    ' name="description">
 <meta content="xml2rfc 3.35.0" name="generator">
 <meta content="ipv6" name="keyword">
 <meta content="address exhaustion" name="keyword">
@@ -1097,11 +1097,11 @@ know it by running a program on the device that they use to access the website. 
 the current time and a secret shared with the web server to calculate the current host ID.)  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  BGP
-route propagation delay is exploited to mitigate volumetric carpet bombing, and the system includes
-a "nuclear option" to switch to a fallback system hardened in a completely different way.  The intended
-result: High expense and no joy for attackers, done with inexpensive VPS's without scrubbing or other third party
-mitigation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+accountability.  Routers use secret whitelisted prefixes to drop neighbor discovery floods.  Border
+Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
+the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
+way.  The intended result: High expense and no joy for attackers, done with inexpensive virtual servers
+(VPS) without scrubbing or other third party mitigation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1194,8 +1194,11 @@ mitigation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This draft is written primarily for networking specialists who want to eliminate attacks on servers while
-ensuring that the solution is not worse than the problem.  The proposed solution is intended to deprive would-be
+<p id="section-1-1">This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
+like to see the global Internet hardened against attacks on servers, but who need to verify that such
+hardening is done without destabilize BGP convergence, exploding the size of the global routing table, or increasing
+global networking energy consumption or the cost of Tier-1 networking appliances. The proposed solution is
+intended to deprive would-be
 attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
 global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
 completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
