@@ -121,7 +121,7 @@ Table of Contents
    subscribers.  Consumers of the conventional World Wide Web (WWW)
    expect to access content anonymously, without paying any money and
    without installing or using any software other than a browser.  The
-   proposed solution presents and entirely different user experience
+   proposed solution presents an entirely different user experience
    characterized by accountability and trust.  For access, each user
    must purchase a subscription and must use a "key program" that is
    customized with baked in credentials.  Before being allowed to
