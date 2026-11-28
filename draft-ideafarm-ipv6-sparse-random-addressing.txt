@@ -22,21 +22,21 @@ Abstract
    uses a unique IPv6 address to access the website.  Sparseness
    prevents attack packets from reaching the web server.  Uniqueness
    creates accountability.  Routers use secret allowlisted prefixes to
-   prevent Neighbor Cache exhaustion and Host Solicitation storms.
-   Border Gateway Protocol (BGP) route propagation delay is exploited to
-   mitigate subnet-wide volumetric attacks ("carpet bombing"), and the
-   system includes a last-resort failover mechanism ("nuclear option")
-   to switch to an alternative system hardened using orthogonal
-   mechanisms that rely on need-to-know secrecy and vetting within
-   small, difficult-to-infiltrate trust-circle groups of subscribers, to
-   limit attack surface and blast radius.  The intended result for
-   would-be attackers: High expense and no significant damage,
-   accomplished with inexpensive Virtual Private Servers (VPS) without
-   the cost, latency, or Single Point of Failure (SPF) brittleness of an
-   Internet that routes traffic through a few massive third-party
-   scrubbing systems.  This document, and the author's implementation,
-   focuses on hardening web servers, but the approach can be applied
-   more generally.
+   prevent Neighbor Cache exhaustion and ICMPv6 Host Solicitation
+   storms.  Border Gateway Protocol (BGP) route propagation delay is
+   exploited to mitigate subnet-wide volumetric attacks ("carpet
+   bombing"), and the system includes a last-resort failover mechanism
+   ("nuclear option") to switch to an alternative system hardened using
+   orthogonal mechanisms that rely on need-to-know secrecy and vetting
+   within small, difficult-to-infiltrate trust-circle groups of
+   subscribers, to limit attack surface and blast radius.  The intended
+   result for would-be attackers: High expense and no significant
+   damage, accomplished with inexpensive Virtual Private Servers (VPS)
+   without the cost, latency, or Single Point of Failure (SPF)
+   brittleness of an Internet that routes traffic through a few massive
+   third-party scrubbing systems.  This document, and the author's
+   implementation, focuses on hardening web servers, but the approach
+   can be applied more generally.
 
 About This Document
 
