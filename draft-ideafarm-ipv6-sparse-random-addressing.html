@@ -8,18 +8,18 @@
 <meta content="Wo Of Ideafarm" name="author">
 <meta content="
        This document discusses how &quot;sparse random addressing&quot; can use the huge IPv6 address space
-to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
+to defeat Distributed Denial of Service (DDoS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and Internet Control Message Protocol
-version 6 (ICMPv6) Host Solicitation storms.  Border
+version 6 (ICMPv6) Neighbor Solicitation storms.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate subnet-wide volumetric attacks (&quot;carpet bombing&quot;), and
 the system includes a last-resort failover mechanism (&quot;nuclear option&quot;) to switch to an alternative system hardened using orthogonal mechanisms
 that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
 of subscribers, to limit attack surface and blast radius. The intended result for would-be attackers: High expense
 and no significant damage, accomplished with inexpensive Virtual Private Servers (VPS) without the cost, latency,
-or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third-party
+or single point of failure brittleness of an Internet that routes traffic through a few massive third-party
 scrubbing systems.  This document, and the author's implementation, focuses on hardening web servers, but the approach
 can be applied more generally. 
     " name="description">
@@ -1094,18 +1094,18 @@ svg {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document discusses how "sparse random addressing" can use the huge IPv6 address space
-to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
+to defeat Distributed Denial of Service (DDoS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and Internet Control Message Protocol
-version 6 (ICMPv6) Host Solicitation storms.  Border
+version 6 (ICMPv6) Neighbor Solicitation storms.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate subnet-wide volumetric attacks ("carpet bombing"), and
 the system includes a last-resort failover mechanism ("nuclear option") to switch to an alternative system hardened using orthogonal mechanisms
 that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
 of subscribers, to limit attack surface and blast radius. The intended result for would-be attackers: High expense
 and no significant damage, accomplished with inexpensive Virtual Private Servers (VPS) without the cost, latency,
-or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third-party
+or single point of failure brittleness of an Internet that routes traffic through a few massive third-party
 scrubbing systems.  This document, and the author's implementation, focuses on hardening web servers, but the approach
 can be applied more generally.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
@@ -1280,7 +1280,7 @@ to 281 trillion prefixes requiring global routability.  Sparse random addressing
 not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
 be advertised at the same time, which will increase the number of prefixes (but not routes) in the
 global routing table. As discussed below, the objective in randomizing the prefix is to
-exploit asymmetries that put a Distributed Denial of Service (DDOS) attacker and his botnet at a disadvantage.  In the experimental
+exploit asymmetries that put a Distributed Denial of Service (DDoS) attacker and his botnet at a disadvantage.  In the experimental
 implementation described below, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
 once each minute, with each prefix being advertised for about 15 minutes.  Deploying sparse random
 addressing in this way, with each server cluster emitting a BGP UPDATE (add+withdraw) message once
@@ -1288,12 +1288,12 @@ each minute, would place a new processing burden on the global BGP system.<a hre
 <p id="section-1-12">This document is a working draft that presents the current status of an experimental implementation
 of sparse random addressing using a single router and a single web server at a single datacenter
 to serve a simple paid-access website.  The initial objective is to get it all to work, and then to
-assess robustness.  (Can it effectively withstand a DDOS attack?)  This document will specify the
+assess robustness.  (Can it effectively withstand a DDoS attack?)  This document will specify the
 experimental system in enough detail to enable others to replicate the experiment, using the same
 proprietary open source software.  In this initial phase, the focus will be to find out whether
-it is possible for a well funded and motivated DDOS attacker to bring down the experimental website.<a href="#section-1-12" class="pilcrow">¶</a></p>
+it is possible for a well funded and motivated DDoS attacker to bring down the experimental website.<a href="#section-1-12" class="pilcrow">¶</a></p>
 <p id="section-1-13">The next research objective will be to quantify the resource impact that the deployment of such
-systems will have on the global BGP and routing system.  If the benefits of defeating DDOS attacks
+systems will have on the global BGP and routing system.  If the benefits of defeating DDoS attacks
 and of facilitating paid-access websites are significant, the Internet community can then discuss
 what level of incremental processing cost it is willing to bear, in the form of more expensive
 routers and higher energy consumption, to obtain those benefits.<a href="#section-1-13" class="pilcrow">¶</a></p>
