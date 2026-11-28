@@ -68,8 +68,9 @@ carrier-grade forwarding hardware and energy must not rise unreasonably relative
 The proposed solution is intended to deprive would-be attackers of both ability and incentive, or even to invert the
 attacker's payoff matrix, while adding only trivial computational and bandwidth burden to the global BGP control plane.
 Deterrence is achieved by combining (1) a hardened primary system, (2) a fallback system of orthogonal mechanisms
-that use need-to-know secrecy and vetting by small trust circles of subscribers to limit the blast radius, and (3) operational and
-user norms in which occasional outages reinforce collective threat awareness and galvanize defensive vigilance.
+that use need-to-know secrecy and vetting by small trust circles of subscribers to limit attack surface and blast radius,
+and (3) operational and user norms in which occasional outages reinforce collective threat awareness and galvanize defensive
+vigilance.
 
 Implementations of the proposed solution must offer compelling content to overcome significant friction to attract
 paying subscribers.  Consumers of the conventional World Wide Web (WWW) expect to access content anonymously, without
