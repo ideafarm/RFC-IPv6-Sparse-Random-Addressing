@@ -41,16 +41,17 @@ informative:
 This document discusses how "sparse random addressing" can use the huge IPv6 address space
 to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
-subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
+subscriber has a unique secret so, at any point in time, a unique IPv6 address is used to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
-Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
-the system includes a "nuclear option" to switch to a fallback system hardened using orthogonal mechanisms
+accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and Host Solicitation storms.  Border
+Gateway Protocol (BGP) route propagation delay is exploited to mitigate subnet-wide volumetric attacks ("carpet bombing"), and
+the system includes a last-resort failover mechanism ("nuclear option") to switch to an alternative system hardened using orthogonal mechanisms
 that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
 of subscribers, to limit attack surface and blast radius. The intended result for would-be attackers: High expense
 and no significant damage, accomplished with inexpensive Virtual Private Servers (VPS) without the cost, latency,
-or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third party
-scrubbing systems.
+or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third-party
+scrubbing systems.  This document, and the author's implementation, focuses on hardening web servers, but the approach
+can be applied more generally.
 
 
 --- middle
