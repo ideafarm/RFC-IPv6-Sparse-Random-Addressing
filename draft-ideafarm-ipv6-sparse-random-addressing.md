@@ -69,18 +69,16 @@ Deterrence is achieved by combining (1) a hardened primary system, (2) a fallbac
 that use need-to-know secrecy and vetting by small trust circles of subscribers to limit the blast radius, and (3) operational and
 user norms in which occasional outages reinforce collective threat awareness and galvanize defensive vigilance.
 
-# Introduction
-
-This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
-like to see the global Internet hardened against attacks on servers, but who need to verify that such
-hardening is done without destabilizing BGP convergence, exploding the size of the global routing table, or increasing
-global networking energy consumption or the cost of Tier-1 networking appliances. The proposed solution is
-intended to deprive would-be
-attackers of both ability and incentive, while adding only trivial computational and bandwidth burden to the
-global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
-completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
-as defects.  (It's no fun for a bully to punch someone in the stomach when the response is, "That feels good.
-Punch me again.")
+Implementations of the proposed solution must offer compelling content to overcome significant friction to attract
+paying subscribers.  Consumers of the conventional World Wide Web (WWW) expect to access content anonymously, without
+paying any money and without installing or using any software other than a browser.  The proposed solution presents
+and entirely different user experience characterized by accountability and trust.  For access, each user must
+purchase a subscription and must use a "key program" that is customized with baked in credentials.  Before being allowed
+to purchase a subscription, each person must present an identification document to, and be video recorded by, a payment
+processor's automated identity and liveness verification system.  Each accepted subscriber is subject to vigorous enforcement of
+civil tort and criminal law, and must also establish trustworthiness by participating in a small trust-circle group of
+subscribers.  But once granted access, subscribers enjoy a social experience that is quite unlike anything possible on the
+conventional, "Wild West WWW" (WW-WWW).
 
 The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
@@ -99,11 +97,6 @@ This document proposes that portions of an IPv6 address be used as time-based pa
 a particular experimental implementation and preliminary findings from studying it, and discusses
 the costs and benefits, both to individual organizations and to the Internet community, of using
 the huge IPv6 address space in this new way.
-
-An implimentation o
-  (They
-know it by running a program on the device that they use to access the website.  That program uses
-the current time and a secret shared with the web server to calculate the current IID.)
 
 Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
