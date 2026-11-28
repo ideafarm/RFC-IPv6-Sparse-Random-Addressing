@@ -39,7 +39,7 @@ informative:
 --- abstract
 
 This document discusses how "sparse random addressing" can use the huge IPv6 address space
-to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
+to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
@@ -52,6 +52,8 @@ and no significant damage, accomplished with inexpensive Virtual Private Servers
 or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third party
 scrubbing systems.
 
+
+--- middle
 
 # Introduction
 
@@ -66,8 +68,6 @@ attacker's payoff matrix, while adding only trivial computational and bandwidth 
 Deterrence is achieved by combining (1) a hardened primary system, (2) a fallback system of orthogonal mechanisms
 that use need-to-know secrecy and vetting by small trust circles of subscribers to limit the blast radius, and (3) operational and
 user norms in which occasional outages reinforce collective threat awareness and galvanize defensive vigilance.
-
---- middle
 
 # Introduction
 
@@ -154,7 +154,7 @@ to 281 trillion prefixes requiring global routability.  Sparse random addressing
 not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
 be advertised at the same time, which will increase the number of prefixes (but not routes) in the
 global routing table. As discussed below, the objective in randomizing the prefix is to
-exploit asymmetries that put a DDOS attacker and his botnet at a disadvantage.  In the experimental
+exploit asymmetries that put a Distributed Denial of Service (DDOS) attacker and his botnet at a disadvantage.  In the experimental
 implementation described below, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
 once each minute, with each prefix being advertised for about 15 minutes.  Deploying sparse random
 addressing in this way, with each server cluster emitting a BGP UPDATE (add+withdraw) message once
