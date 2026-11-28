@@ -43,7 +43,8 @@ to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
-accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and ICMPv6 Host Solicitation storms.  Border
+accountability.  Routers use secret allowlisted prefixes to prevent Neighbor Cache exhaustion and Internet Control Message Protocol
+version 6 (ICMPv6) Host Solicitation storms.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate subnet-wide volumetric attacks ("carpet bombing"), and
 the system includes a last-resort failover mechanism ("nuclear option") to switch to an alternative system hardened using orthogonal mechanisms
 that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
