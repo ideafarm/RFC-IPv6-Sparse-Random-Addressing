@@ -13,23 +13,24 @@ Expires: 1 June 2027
 
 Abstract
 
-   The IPv6 address space is huge.  This document discusses how "sparse
-   random addressing" can be used to defeat DDOS attacks, and also to
-   create paid-access websites.  The essential idea is to use the host
-   ID portion of an IPv6 address as a time-based password that only paid
-   subscribers know.  (They know it by running a program on the device
-   that they use to access the website.  That program uses the current
-   time and a secret shared with the web server to calculate the current
-   host ID.)  Each subscriber has a unique secret so, at any point in
-   time, uses a unique IPv6 address to access the website.  Sparseness
-   prevents attack packets from reaching the web server.  Uniqueness
-   creates accountability.  Routers use secret allowlisted prefixes to
-   drop neighbor discovery floods.  Border Gateway Protocol (BGP) route
-   propagation delay is exploited to mitigate volumetric carpet bombing,
-   and the system includes a "nuclear option" to switch to a fallback
-   system hardened in a completely different way.  The intended result:
-   High expense and no joy for attackers, done with inexpensive virtual
-   servers (VPS) without scrubbing or other third party mitigation.
+   This document discusses how "sparse random addressing" can use the
+   huge IPv6 address space to defeat DDOS attacks, and also to create
+   paid-access websites.  The essential idea is to use the Interface
+   Identifier (IID) portion of an IPv6 address as a time-based password
+   that only paid subscribers know.  (They know it by running a program
+   on the device that they use to access the website.  That program uses
+   the current time and a secret shared with the web server to calculate
+   the current IID.)  Each subscriber has a unique secret so, at any
+   point in time, uses a unique IPv6 address to access the website.
+   Sparseness prevents attack packets from reaching the web server.
+   Uniqueness creates accountability.  Routers use secret allowlisted
+   prefixes to drop neighbor discovery floods.  Border Gateway Protocol
+   (BGP) route propagation delay is exploited to mitigate volumetric
+   carpet bombing, and the system includes a "nuclear option" to switch
+   to a fallback system hardened in a completely different way.  The
+   intended result: High expense and no joy for attackers, done with
+   inexpensive virtual servers (VPS) without scrubbing or other third
+   party mitigation.
 
 About This Document
 
@@ -134,12 +135,12 @@ Table of Contents
    application, brute force password attacks are prevented by requiring
    that the user also enter a time-based password that is calculated
    using the current time and a secret that only he and the web server
-   knows.  Current practice allocates 64 bits for the host ID portion of
-   an IPv6 address, which is huge relative to the number of distinct
-   values needed to identify each host on a physical link of any
-   conceivable size.  By using some (or all) of those bits as a time-
-   based password, attack packets can be prevented, by sparseness, from
-   reaching those servers.
+   knows.  Current practice allocates 64 bits for the IID portion of an
+   IPv6 address, which is huge relative to the number of distinct values
+   needed to identify each host on a physical link of any conceivable
+   size.  By using some (or all) of those bits as a time-based password,
+   attack packets can be prevented, by sparseness, from reaching those
+   servers.
 
    For such a scheme to work, a would-be attacker must not be able to
    discover the secret.  A simple way to prevent this is to give a
