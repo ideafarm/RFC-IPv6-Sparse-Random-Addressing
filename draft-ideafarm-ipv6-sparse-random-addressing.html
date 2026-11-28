@@ -8,16 +8,18 @@
 <meta content="Wo Of Ideafarm" name="author">
 <meta content='
        This document discusses how "sparse random addressing" can use the huge IPv6 address space
-to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
+to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
-the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
-way.  The intended result for would-be attackers: High expense and no significant damage, accomplished with
-inexpensive Virtual Private Servers (VPS) without the cost, latency, or Single Point of Failure (SPF) brittleness
-of an Internet that routes much of its traffic through a few massive third party scrubbing systems. 
+the system includes a "nuclear option" to switch to a fallback system hardened using orthogonal mechanisms
+that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
+of subscribers, to limit attack surface and blast radius. The intended result for would-be attackers: High expense
+and no significant damage, accomplished with inexpensive Virtual Private Servers (VPS) without the cost, latency,
+or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third party
+scrubbing systems. 
     ' name="description">
 <meta content="xml2rfc 3.35.0" name="generator">
 <meta content="ipv6" name="keyword">
@@ -1090,16 +1092,18 @@ svg {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document discusses how "sparse random addressing" can use the huge IPv6 address space
-to defeat DDOS attacks, and also to create paid-access websites.  The essential idea is to use the
+to defeat Distributed Denial of Service (DDOS) attacks, and also to create paid-access websites.  The essential idea is to use the
 Interface Identifier (IID) portion of an IPv6 address as a time-based password that only paid subscribers know.  Each
 subscriber has a unique secret so, at any point in time, uses a unique IPv6 address to access the
 website.  Sparseness prevents attack packets from reaching the web server.  Uniqueness creates
 accountability.  Routers use secret allowlisted prefixes to drop neighbor discovery floods.  Border
 Gateway Protocol (BGP) route propagation delay is exploited to mitigate volumetric carpet bombing, and
-the system includes a "nuclear option" to switch to a fallback system hardened in a completely different
-way.  The intended result for would-be attackers: High expense and no significant damage, accomplished with
-inexpensive Virtual Private Servers (VPS) without the cost, latency, or Single Point of Failure (SPF) brittleness
-of an Internet that routes much of its traffic through a few massive third party scrubbing systems.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+the system includes a "nuclear option" to switch to a fallback system hardened using orthogonal mechanisms
+that rely on need-to-know secrecy and vetting within small, difficult-to-infiltrate trust-circle groups
+of subscribers, to limit attack surface and blast radius. The intended result for would-be attackers: High expense
+and no significant damage, accomplished with inexpensive Virtual Private Servers (VPS) without the cost, latency,
+or Single Point of Failure (SPF) brittleness of an Internet that routes traffic through a few massive third party
+scrubbing systems.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1166,22 +1170,25 @@ of an Internet that routes much of its traffic through a few massive third party
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-introduction-2" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1192,7 +1199,24 @@ of an Internet that routes much of its traffic through a few massive third party
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
+<p id="section-1-1">This document is written primarily for network architects deploying the Border Gateway Protocol (BGP) who
+see the need to harden the global Internet against Artificial Intelligence (AI)-assisted attacks on servers, but who must ensure
+that such hardening is done at reasonable operational and capital costs and in a way that does not degrade routing stability if deployed
+at scale.  BGP convergence must not be destabilized, and the size of the global routing table and the cost of
+carrier-grade forwarding hardware and energy must not rise unreasonably relative to the benefits gained.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The proposed solution is intended to deprive would-be attackers of both ability and incentive, or even to invert the
+attacker's payoff matrix, while adding only trivial computational and bandwidth burden to the global BGP control plane.
+Deterrence is achieved by combining (1) a hardened primary system, (2) a fallback system of orthogonal mechanisms
+that use need-to-know secrecy and vetting by small trust circles of subscribers to limit the blast radius, and (3) operational and
+user norms in which occasional outages reinforce collective threat awareness and galvanize defensive vigilance.<a href="#section-1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="introduction-1">
+<section id="section-2">
+      <h2 id="name-introduction-2">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-2-1">This document is written primarily for network architects deploying Border Gateway Protocol (BGP) who would
 like to see the global Internet hardened against attacks on servers, but who need to verify that such
 hardening is done without destabilizing BGP convergence, exploding the size of the global routing table, or increasing
 global networking energy consumption or the cost of Tier-1 networking appliances. The proposed solution is
@@ -1201,8 +1225,8 @@ attackers of both ability and incentive, while adding only trivial computational
 global BGP system.  This is done by combining (1) a hardened primary system, (2) a fallback system hardened in a
 completely different way, and (3) a user culture in which occasional outages are viewed as "features" rather than
 as defects.  (It's no fun for a bully to punch someone in the stomach when the response is, "That feels good.
-Punch me again.")<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
+Punch me again.")<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
 and this policy could continue indefinitely without ever consuming more than a small fraction of
 the available address space.  Yet all of the Tier-1 networking providers and all of the Regional Internet
@@ -1213,41 +1237,41 @@ applicant must have multiple physical locations to obtain a prefix shorter than 
 number of physical locations such that each location is only given a single routable prefix.  The
 policy neither contemplates nor provides for using the huge IPv6 address space in any manner other
 than the way that IPv4 addresses have been used for a half century, one unchanging public address
-per device.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document proposes that portions of an IPv6 address be used as time-based passwords, describes
+per device.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">This document proposes that portions of an IPv6 address be used as time-based passwords, describes
 a particular experimental implementation and preliminary findings from studying it, and discusses
 the costs and benefits, both to individual organizations and to the Internet community, of using
-the huge IPv6 address space in this new way.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">An implimentation o
+the huge IPv6 address space in this new way.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">An implimentation o
   (They
 know it by running a program on the device that they use to access the website.  That program uses
-the current time and a secret shared with the web server to calculate the current IID.)<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
+the current time and a secret shared with the web server to calculate the current IID.)<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">Time-based passwords have become widely used to provide "two factor authentication" when a user logs into a
 website.  In that application, brute force password attacks are prevented by requiring that the
 user also enter a time-based password that is calculated using the current time and a secret that
 only he and the web server knows.  Current practice allocates 64 bits for the Interface Identifier (IID) portion of
 an IPv6 address, which is huge relative to the number of distinct values needed to identify each
 host on a physical link of any conceivable size.  By using some (or all) of those bits as a time-based
-password, attack packets can be prevented, by sparseness, from reaching those servers.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">For such a scheme to work, a would-be attacker must not be able to discover the secret.  A simple
+password, attack packets can be prevented, by sparseness, from reaching those servers.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">For such a scheme to work, a would-be attacker must not be able to discover the secret.  A simple
 way to prevent this is to give a unique secret to each paid subscriber, which requires that the
 server accepts packets from many IPv6 addresses, one for each subscriber.  An attacker can purchase
 a subscription and use a tool like Wireshark to see the current IPv6 address that gives him access
 to the server, but if he uses that information to attack the server, the IPv6 addresses that the
-attack uses will reveal his identity.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">A similar approach can be used to secure upstream routers from a flooding attack.  A well funded and
+attack uses will reveal his identity.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">A similar approach can be used to secure upstream routers from a flooding attack.  A well funded and
 motivated attacker might use a botnet to flood the /48 prefix with randomly addressed packets, not
 to reach the web server, but to get the upstream ISP to nullroute the entire prefix.  Randomizing a
-portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">To protect web servers from neighbor discovery floods, routers drop all packets not addressed
+portion of the /48 prefix can mitigate and, in some scenarios, entirely quash such an attack.<a href="#section-2-7" class="pilcrow">¶</a></p>
+<p id="section-2-8">To protect web servers from neighbor discovery floods, routers drop all packets not addressed
 to secret allowlisted /96 prefixes.  To protect routers from hypervolumetric carpet bombing attacks, the globally routable /48 prefix is also
 randomized and changed every 84 seconds, in order to exploit BGP route propagation delay to create a race
 condition that favors client peers and handicaps attackers.  (By the time that a malicious botnet can target
 the newly announced prefix and ramp up volume, the system is no longer using that prefix.)  To eliminate any
 incentive for bad actors to attack, the system is designed to detect any significant attack within seconds and
 to immediately withdraw all /48 prefixes for several hours and to fall back to an alternative system that
-provides reduced but adequate functionality.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">Using the huge IPv6 address space in this way consumes orders of magnitude more addresses, so such
+provides reduced but adequate functionality.<a href="#section-2-8" class="pilcrow">¶</a></p>
+<p id="section-2-9">Using the huge IPv6 address space in this way consumes orders of magnitude more addresses, so such
 applications revive address exhaustion concerns.  Fortunately, these concerns are mitigated by two
 facts.  First, the space is so huge that, even with current routing practice, every person on the
 planet can be given a /36 prefix for his exclusive use, and each such block contains 4096 routable
@@ -1259,62 +1283,62 @@ space.  (In that space, the number of routes in the global routing table would b
 enforced sparseness rather than prefix length.)  It might take several years for such prefixes
 to become reliably routable, but after that transition, sparse random addressing would no longer
 require prefixes shorter than /48.  So sparse random addressing would not, long term, create an
-address exhaustion concern.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
+address exhaustion concern.<a href="#section-2-9" class="pilcrow">¶</a></p>
+<p id="section-2-10">Explosive growth of the global routing table, not address exhaustion, will likely be what constrains
 use of the huge IPv6 address space.  Even if prefixes longer than 48 bits are dropped, that leaves up
 to 281 trillion prefixes requiring global routability.  Sparse random addressing "theoretically" does
 not increase the number of prefixes advertised, but in practice it will, because multiple prefixes must
 be advertised at the same time, which will increase the number of prefixes (but not routes) in the
 global routing table. As discussed below, the objective in randomizing the prefix is to
-exploit asymmetries that put a DDOS attacker and his botnet at a disadvantage.  In the experimental
+exploit asymmetries that put a Distributed Denial of Service (DDOS) attacker and his botnet at a disadvantage.  In the experimental
 implementation described below, this is done by withdrawing the eldest prefix and advertising a new prefix approximately
 once each minute, with each prefix being advertised for about 15 minutes.  Deploying sparse random
 addressing in this way, with each server cluster emitting a BGP UPDATE (add+withdraw) message once
-each minute, would place a new processing burden on the global BGP system.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11">This document is a working draft that presents the current status of an experimental implementation
+each minute, would place a new processing burden on the global BGP system.<a href="#section-2-10" class="pilcrow">¶</a></p>
+<p id="section-2-11">This document is a working draft that presents the current status of an experimental implementation
 of sparse random addressing using a single router and a single web server at a single datacenter
 to serve a simple paid-access website.  The initial objective is to get it all to work, and then to
 assess robustness.  (Can it effectively withstand a DDOS attack?)  This document will specify the
 experimental system in enough detail to enable others to replicate the experiment, using the same
 proprietary open source software.  In this initial phase, the focus will be to find out whether
-it is possible for a well funded and motivated DDOS attacker to bring down the experimental website.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">The next research objective will be to quantify the resource impact that the deployment of such
+it is possible for a well funded and motivated DDOS attacker to bring down the experimental website.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-12">The next research objective will be to quantify the resource impact that the deployment of such
 systems will have on the global BGP and routing system.  If the benefits of defeating DDOS attacks
 and of facilitating paid-access websites are significant, the Internet community can then discuss
 what level of incremental processing cost it is willing to bear, in the form of more expensive
-routers and higher energy consumption, to obtain those benefits.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">At this early stage, this approach appears to promise to give the Internet community the "upper hand"
+routers and higher energy consumption, to obtain those benefits.<a href="#section-2-12" class="pilcrow">¶</a></p>
+<p id="section-2-13">At this early stage, this approach appears to promise to give the Internet community the "upper hand"
 in its battle against bad actors who use botnets to attack servers, and sparse random addressing,
 which can only be done with IPv6, just might be the "killer app" that could finally drive universal
-migration to IPv6.<a href="#section-1-13" class="pilcrow">¶</a></p>
+migration to IPv6.<a href="#section-2-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
-<section id="section-2">
+<section id="section-3">
       <h2 id="name-conventions-and-definitions">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
       </h2>
-<p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+<p id="section-3-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+appear in all capitals, as shown here.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-3">
+<section id="section-4">
       <h2 id="name-security-considerations">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-3-1">[TODO Security]<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">[TODO Security]<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-4">
+<section id="section-5">
       <h2 id="name-iana-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-4-1">This document proposes that a /16 block be reserved for sparse random addressing:<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Block: 2003::/16
+<p id="section-5-1">This document proposes that a /16 block be reserved for sparse random addressing:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">Block: 2003::/16
 Name: Sparse Random Addressing
 RFC: [This document]
 Allocation Date: [TBD]
@@ -1323,17 +1347,17 @@ Source: TRUE
 Destination: TRUE
 Forwardable: TRUE
 Globally Reachable: TRUE
-Reserved-by-Protocol: TRUE<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Required IP compliant processing:  External BGP peers <span class="bcp14">SHALL NOT</span> drop routes for prefixes within this
+Reserved-by-Protocol: TRUE<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Required IP compliant processing:  External BGP peers <span class="bcp14">SHALL NOT</span> drop routes for prefixes within this
 block based upon prefix lengths from /0 through /128.  To limit the number of global routing table
 entries for destinations in this block, routers <span class="bcp14">SHALL</span> enforce sparseness, using any of the algorithms
-specified in this document.<a href="#section-4-3" class="pilcrow">¶</a></p>
+specified in this document.<a href="#section-5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-normative-references">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
