@@ -75,12 +75,12 @@ Implementations of the proposed solution must offer compelling content to overco
 paying subscribers.  Consumers of the conventional World Wide Web (WWW) expect to access content anonymously, without
 paying any money and without installing or using any software other than a browser.  The proposed solution presents
 an entirely different user experience characterized by accountability and trust.  For access, each user must
-purchase a subscription and must use a "key program" that is customized with baked in credentials.  Before being allowed
+purchase a subscription and must use a "key program" that is customized with provisioned credentials.  Before being allowed
 to purchase a subscription, each person must present an identification document to, and be video recorded by, a payment
-processor's automated identity and liveness verification system.  Each accepted subscriber is subject to vigorous enforcement of
-civil tort and criminal law, and must also establish trustworthiness by participating in a small trust-circle group of
-subscribers.  But once granted access, subscribers enjoy a social experience that is quite unlike anything possible on the
-conventional, "Wild West WWW" (WW-WWW).
+processor's automated identity and liveness verification system.  Each accepted subscriber has a verified legal identity and
+is subject to civil and criminal jurisdiction, and must also establish trustworthiness by participating in a small trust-circle group of
+subscribers.  But once granted access and accepted as trustworthy, subscribers enjoy a social experience that is quite
+unlike anything possible on the conventional, unauthenticated, open-access WWW.
 
 The IPv6 address space is huge.  For example, it contains 68 billion prefixes that are 36 bits long,
 so every human being alive today could be given a /36 prefix for his or her exclusive use for life,
